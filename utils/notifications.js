@@ -1,9 +1,15 @@
 import { Notifications, Permissions } from 'expo';
 
+/**
+ * @description Clears the local notification
+ */
 export function clearActivityReminderNotification () {
     Notifications.cancelAllScheduledNotificationsAsync();
 }
 
+/**
+ * @description Creates the notification object
+ */
 export function createActivityReminderNotification () {
     return {
         title: 'Participate in a quiz',
@@ -20,6 +26,9 @@ export function createActivityReminderNotification () {
     };
 }
 
+/**
+ * @description Schedules the local notification
+ */
 export function setActivityReminderNotification () {
     Permissions.askAsync(Permissions.NOTIFICATIONS).then(({ status }) => {
         if (status === 'granted') {

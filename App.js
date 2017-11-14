@@ -7,7 +7,13 @@ import Decks from './components/Decks';
 import DeckForm from './components/DeckForm';
 import { clearActivityReminderNotification, setActivityReminderNotification } from './utils/notifications';
 
+/**
+ * @description App component
+ */
 export default class App extends React.Component {
+    /**
+     * @description Sets a local notification upon  mount
+     */
     componentDidMount () {
         API.getLatestActivity().then(timestamp => {
             const now = new Date();
@@ -23,6 +29,9 @@ export default class App extends React.Component {
         });
     }
   
+    /**
+     * @description renders the app
+     */
     render() {
         return (
             <Provider store={store}>

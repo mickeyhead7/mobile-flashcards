@@ -2,21 +2,30 @@ import { AsyncStorage } from 'react-native';
 
 const DECKS_STORAGE_KEY = 'MobileFlashCards:decks';
 
+/**
+ * @description Retrieves decks from local storage
+ * @returns {Promise} Decks object listing
+ */
 export function getDecks () {
-    // AsyncStorage
-    //     .setItem(DECKS_STORAGE_KEY, JSON.stringify({}));
-
     return AsyncStorage
         .getItem(DECKS_STORAGE_KEY)
         .then(results => JSON.parse(results));
 }
 
+/**
+ * @description Retrieves a selected deck from local storage
+ * @returns {Promise} Deck object
+ */
 export function getDeck (title) {
     return AsyncStorage
         .getItem(DECKS_STORAGE_KEY)
         .then(results => JSON.parse(results)[title]);
 }
 
+/**
+ * @description Adds a deck to local storage
+ * @returns {Promise} Deck object
+ */
 export function addDeck (title) {
     const deck = {
         title: title,
@@ -33,6 +42,10 @@ export function addDeck (title) {
         });
 }
 
+/**
+ * @description Adds a card to a deck in local storage
+ * @returns {Promise} Card object
+ */
 export function addCardToDeck (title, card) {
     return getDecks()
         .then(results => {
@@ -43,9 +56,14 @@ export function addCardToDeck (title, card) {
             return AsyncStorage.mergeItem(DECKS_STORAGE_KEY, JSON.stringify({
                 [title]: deck,
             }));
-        });
+        })
+        .then(() => card);
 }
 
+/**
+ * @description Completes a quiz in local storage
+ * @returns {Promise} Deck object
+ */
 export function completeQuiz (title, timestamp) {
     return getDecks()
         .then(results => {
@@ -56,9 +74,14 @@ export function completeQuiz (title, timestamp) {
             return AsyncStorage.mergeItem(DECKS_STORAGE_KEY, JSON.stringify({
                 [title]: deck,
             }));
-        });
+        })
+        .then(() => deck);
 }
 
+/**
+ * @description Retrieves the most recent completed quiz timestamp from local storage
+ * @returns {string} Timestamp of most recent completed quiz
+ */
 export function getLatestActivity () {
     return getDecks().then(results => {
         return Object.entries(results).reduce((latest, value) => {

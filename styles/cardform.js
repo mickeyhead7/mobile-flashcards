@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 /**
- * @description Deck form styles
+ * @description card form styles
  */
 const styles = StyleSheet.create({
     container: {
