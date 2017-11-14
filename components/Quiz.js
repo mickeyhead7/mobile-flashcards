@@ -51,7 +51,7 @@ class Quiz extends Component {
     };
 
     completeQuiz = () => {
-        return this.props.completeQuiz(this.props.deck.title);
+        return this.props.completeQuiz(this.props.deck.title, new Date());
     };
 
     render () {
@@ -87,8 +87,8 @@ const mapStateToProps = (decks, { navigation }) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        completeQuiz: (title) => {
-            return dispatch(completeQuiz(title));
+        completeQuiz: (title, timestamp) => {
+            return dispatch(completeQuiz(title, timestamp));
         },
     };
 };

@@ -46,12 +46,12 @@ export function addCardToDeck (title, card) {
         });
 }
 
-export function completeQuiz (title) {
+export function completeQuiz (title, timestamp) {
     return getDecks()
         .then(results => {
             const deck = results[title];
 
-            deck.timeCompleted = new Date();
+            deck.timeCompleted = timestamp;
 
             return AsyncStorage.mergeItem(DECKS_STORAGE_KEY, JSON.stringify({
                 [title]: deck,
