@@ -71,11 +71,13 @@ export function completeQuiz (title, timestamp) {
 
             deck.timeCompleted = timestamp;
 
-            return AsyncStorage.mergeItem(DECKS_STORAGE_KEY, JSON.stringify({
+            AsyncStorage.mergeItem(DECKS_STORAGE_KEY, JSON.stringify({
                 [title]: deck,
             }));
+
+            return deck;
         })
-        .then(() => deck);
+        .then(deck => deck);
 }
 
 /**

@@ -8,26 +8,12 @@ import React, { Component } from 'react';
 import { 
     Button, 
     Keyboard, 
-    KeyboardAvoidingView, 
-    StatusBar, 
+    KeyboardAvoidingView,  
     Text, 
     TextInput, 
     TouchableHighlight, 
     View,
 } from 'react-native';
-
-/**
- * @description Allows space for the device status bar
- * @param {object} properties Status bar properties
- * @returns Status bar component
- */
-const DecksStatusBar = ({ backgroundColor, ...props }) => {
-    return (
-        <View style={{ height: Constants.statusBarHeight }}>
-            <StatusBar translucent {...props} />
-        </View>
-    )
-};
 
 /**
  * @description Deck form component
@@ -95,7 +81,6 @@ class DeckForm extends Component {
         return (
             <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
                 <View style={deckFormStyles.container}>
-                    <DecksStatusBar barStyle="light-content" />
                     <Text style={formStyles.label}>What is the title of your new deck?</Text>
                     <TextInput
                         style={formStyles.input}
