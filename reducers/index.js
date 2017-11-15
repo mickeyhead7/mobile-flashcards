@@ -6,7 +6,7 @@ import { ADD_CARD, ADD_DECK, ADD_DECKS, COMPLETE_QUIZ } from '../actions';
  * @param {*} action Action to process
  */
 function decks (state = {}, action) {
-    let decks = state;
+    let decks = state || {};
     let deck;
 
     switch (action.type) {

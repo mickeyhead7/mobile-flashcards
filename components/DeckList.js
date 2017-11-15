@@ -86,6 +86,8 @@ class DeckList extends Component {
  * @returns {object} Props to map
  */
 const mapStateToProps = decks => {
+    decks = decks || {};
+    
     const sorted = Object.entries(decks)
         .sort(sortBy('1.title'))
         .map(deck => deck[1]);

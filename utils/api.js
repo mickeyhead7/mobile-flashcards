@@ -49,6 +49,7 @@ export function addDeck (title) {
 export function addCardToDeck (title, card) {
     return getDecks()
         .then(results => {
+            console.log(results);
             const deck = results[title];
             
             deck.questions.push(card);
@@ -86,6 +87,10 @@ export function completeQuiz (title, timestamp) {
  */
 export function getLatestActivity () {
     return getDecks().then(results => {
+        if (!results) {
+            return null;
+        }
+        
         return Object.entries(results).reduce((latest, value) => {
             const timestamp = value[1].timeCompleted;
 
