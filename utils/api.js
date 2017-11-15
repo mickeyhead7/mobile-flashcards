@@ -49,7 +49,6 @@ export function addDeck (title) {
 export function addCardToDeck (title, card) {
     return getDecks()
         .then(results => {
-            console.log(results);
             const deck = results[title];
             
             deck.questions.push(card);
