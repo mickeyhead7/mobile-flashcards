@@ -3,14 +3,14 @@ import { Notifications, Permissions } from 'expo';
 /**
  * @description Clears the local notification
  */
-export function clearActivityReminderNotification () {
+export const clearActivityReminderNotification = () => {
     Notifications.cancelAllScheduledNotificationsAsync();
 }
 
 /**
  * @description Creates the notification object
  */
-export function createActivityReminderNotification () {
+export const createActivityReminderNotification = () => {
     return {
         title: 'Participate in a quiz',
         body: `You haven't participated in a quiz today`,
@@ -29,7 +29,7 @@ export function createActivityReminderNotification () {
 /**
  * @description Schedules the local notification
  */
-export function setActivityReminderNotification () {
+export const setActivityReminderNotification = () => {
     Permissions.askAsync(Permissions.NOTIFICATIONS).then(({ status }) => {
         if (status === 'granted') {
             Notifications.cancelAllScheduledNotificationsAsync();

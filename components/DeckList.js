@@ -14,7 +14,7 @@ class DeckList extends Component {
      * @description Proptypes
      */
     static propTypes = {
-        decks: propTypes.array.isRequired,
+        decks: propTypes.object.isRequired,
         navigation: propTypes.object.isRequired,
     };
 
@@ -46,11 +46,25 @@ class DeckList extends Component {
     toDeckForm = () => {
         this.props.navigation.navigate('DeckForm');
     };
+
+    /**
+     * @description Sorts the decks alphabetically
+     * @returns {array} Sorted decks
+     */
+    sortDecks = decks => {
+        decks = this.props.decks || {};
+        
+        return Object.entries(decks)
+            .sort(sortBy('1.title'))
+            .map(deck => deck[1]);
+    };
     
     /**
      * @description renders the component
      */
     render () {
+        const sorted = this.sortDecks();
+
         return (
             <View style={{ flex: 1 }}>
                 <TouchableHighlight 
@@ -60,7 +74,7 @@ class DeckList extends Component {
                     <Text style={formStyles.buttonText}>Add a new deck</Text>
                 </TouchableHighlight>
                 <FlatList
-                    data={this.props.decks}
+                    data={sorted}
                     keyExtractor={item => item.title}
                     renderItem={({ item }) => (
                         <TouchableHighlight onPress={() => this.navigateToDeck(item.title)}>
@@ -86,14 +100,8 @@ class DeckList extends Component {
  * @returns {object} Props to map
  */
 const mapStateToProps = decks => {
-    decks = decks || {};
-    
-    const sorted = Object.entries(decks)
-        .sort(sortBy('1.title'))
-        .map(deck => deck[1]);
-
     return {
-        decks: sorted,
+        decks,
     };
 };
 

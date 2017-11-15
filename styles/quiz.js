@@ -39,6 +39,9 @@ const styles = StyleSheet.create({
         fontSize: 30,
         textAlign: 'center',
     },
+    restartButton: {
+        marginBottom: 20,
+    },
 });
 
 export default styles;

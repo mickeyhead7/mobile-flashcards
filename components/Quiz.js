@@ -104,10 +104,22 @@ class Quiz extends Component {
     };
 
     /**
-     * @description Navigates to the decks view
+     * @description Restarts the current quiz
      */
-    toDecks = () => {
-        this.props.navigation.navigate('Decks');
+    restartQuiz = () => {
+        this.setState({
+            key: 0,
+            score: 0,
+        });
+    };
+
+    /**
+     * @description Navigates to the deck view
+     */
+    toDeck = () => {
+        this.props.navigation.navigate('Deck', {
+            title: this.props.deck.title,
+        });
     };
 
     /**
@@ -139,10 +151,16 @@ class Quiz extends Component {
                             {`You scored ${this.state.score} out of ${questions.length}`}
                         </Text>
                         <TouchableHighlight
-                            style={formStyles.buttonHollow}
-                            onPress={this.toDecks}
+                            style={[formStyles.buttonHollow, quizStyles.restartButton]}
+                            onPress={this.restartQuiz}
                         >
-                            <Text style={formStyles.buttonTextHollow}>Try another quiz</Text>
+                            <Text style={formStyles.buttonTextHollow}>Restart the quiz</Text>
+                        </TouchableHighlight>
+                        <TouchableHighlight
+                            style={formStyles.button}
+                            onPress={this.toDeck}
+                        >
+                            <Text style={formStyles.buttonText}>Back to the deck</Text>
                         </TouchableHighlight>
                     </View>
                 )}

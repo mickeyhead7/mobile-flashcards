@@ -35,6 +35,7 @@ class CardForm extends Component {
     state = {
         question: '',
         answer: '',
+        error: null,
     };
 
     /**
@@ -70,6 +71,10 @@ class CardForm extends Component {
         };
         
         if (!question || !answer) {
+            this.setState({
+                error: 'Please enter a question and an answer',
+            });
+
             return;
         }
 
@@ -103,6 +108,9 @@ class CardForm extends Component {
                         value={this.state.answer}
                         onChangeText={this.handleAnswerInput}
                     />
+                    {this.state.error ? (
+                        <Text style={formStyles.error}>{this.state.error}</Text>
+                    ) : null}
                     <TouchableHighlight 
                         onPress={this.handleSubmit} 
                         style={formStyles.button}

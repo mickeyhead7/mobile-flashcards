@@ -1,35 +1,9 @@
-import Deck from './Deck';
-import Quiz from './Quiz';
-import CardForm from './CardForm';
-import DeckForm from './DeckForm';
-import DeckList from './DeckList';
 import propTypes from 'prop-types';
 import { View } from 'react-native';
+import Navigator from './Navigator';
 import { addDecks } from '../actions';
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import { StackNavigator } from 'react-navigation';
-
-/**
- * @description Navigation component
- */
-const DecksNavigator = StackNavigator({
-    Decks: {
-        screen: DeckList,
-    },
-    Deck: {
-        screen: Deck,
-    },
-    DeckForm: {
-        screen: DeckForm,
-    },
-    AddCard: {
-        screen: CardForm,
-    },
-    Quiz: {
-        screen: Quiz,
-    },
-});
 
 /**
  * @description Decks compeonent
@@ -55,7 +29,7 @@ class Decks extends Component {
     render () {
         return (
             <View style={{flex: 1}}>
-                <DecksNavigator />
+                <Navigator />
             </View>
         );
     }

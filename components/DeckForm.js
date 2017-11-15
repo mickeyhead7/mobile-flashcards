@@ -40,6 +40,7 @@ class DeckForm extends Component {
      */
     state = {
         title: '',
+        error: null,
     };
 
     /**
@@ -59,6 +60,10 @@ class DeckForm extends Component {
         const title = this.state.title.trim();
         
         if (!title) {
+            this.setState({
+                error: 'Please enter a deck title',
+            });
+
             return;
         }
 
@@ -87,6 +92,9 @@ class DeckForm extends Component {
                         value={this.state.title}
                         onChangeText={this.handleTitleInput}
                     />
+                    {this.state.error ? (
+                        <Text style={formStyles.error}>{this.state.error}</Text>
+                    ) : null}
                     <TouchableHighlight 
                         onPress={this.handleSubmit} 
                         style={formStyles.button}

@@ -1,4 +1,4 @@
-import { black, grey, white } from '../consts/colors';
+import { black, grey, red, white } from '../consts/colors';
 import { StyleSheet } from 'react-native';
 
 /**
@@ -40,6 +40,11 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         marginBottom: 10,
+    },
+    error: {
+        color: red,
+        marginBottom: 20,
+        textAlign: 'center',
     },
 });
 
